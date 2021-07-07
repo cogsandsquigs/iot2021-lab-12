@@ -22,7 +22,8 @@ void loop()
     Serial.printlnf("input: %d", value);
 
     char rx[1];
-    char tx[0] = value;
+    char tx[1];
+    tx[0] = value;
 
     digitalWrite(D5, LOW);
     SPI.transfer(tx, rx, 1, NULL);

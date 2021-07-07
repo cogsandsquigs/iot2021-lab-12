@@ -29,11 +29,11 @@ void loop()
   {
     char value = Serial.read();
     Serial.printlnf("input: %d", value);
-    while (!Serial.isConnected())
-      ;
+
     char rx[1];
     char tx[1];
     tx[0] = value;
+
     digitalWrite(D5, LOW);
     SPI.transfer(tx, rx, 1, NULL);
     digitalWrite(D5, HIGH);

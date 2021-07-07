@@ -30,21 +30,18 @@ void loop()
         char rx[1];
         char tx[1];
         CS = false;
-        Serial.printlnf("%d", rx[0]);
+        //Serial.printlnf("%d", rx[0]);
+        tx[0] = digitalRead(D8);
         SPI1.transfer(tx, rx, 1, NULL);
         if (rx[0] == '1')
         {
+            Serial.println("LED HIGH");
             digitalWrite(D7, HIGH);
         }
-        if (rx[0] == '0')
+        else if (rx[0] == '0')
         {
+            Serial.println("LED LOW");
             digitalWrite(D7, LOW);
-        }
-        if (rx[0] == '?')
-        {
-            tx[0] = digitalRead(D8);
-            //Serial.println(digitalRead(D8));
-            SPI1.transfer(tx, rx, 1, NULL);
         }
     }
 }
